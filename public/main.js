@@ -28,7 +28,8 @@ function downVote(){
     }
 
   })
-
+  $(this).parent().parent().parent().parent().parent().parent().data('score',parseInt(sscore)-1);
+  $(this).parent().parent().parent().parent().parent().parent().find('.voteScore').text(parseInt(sscore)-1);
 }
 
 function upVote(){
@@ -48,7 +49,8 @@ function upVote(){
       getAllPosts();
     }
   })
-
+  $(this).parent().parent().parent().parent().parent().parent().data('score',parseInt(sscore)+1);
+  $(this).parent().parent().parent().parent().parent().parent().find('.voteScore').text(parseInt(sscore)+1);
 }
 
 function deleteText(){
