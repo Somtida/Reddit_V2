@@ -4,7 +4,7 @@ const db = require('../config/db')
 const moment = require('moment');
 const uuid = require('uuid');
 
-db.run(`create table if not exists posts(
+db.query(`create table if not exists posts(
   id TEXT,
   createdAt TEXT,
   text TEXT,
@@ -13,7 +13,7 @@ db.run(`create table if not exists posts(
 
 exports.getAll = () => {
   return new Promise((resolve, reject)=>{
-    db.all('select * from posts', function(err, posts){
+    db.query('select * from posts', function(err, posts){
       if(err){
         reject(err);
       }else{
@@ -25,14 +25,13 @@ exports.getAll = () => {
 
 exports.create = postObj => {
   return new Promise((resolve, reject)=>{
-    db.run('insert into posts values (?, ?, ?, ?)',
-      uuid(),
-      moment().toISOString(),
-      postObj.text,
-      0,
-      function(err){
+    postObj.id = uuid();
+    postObj,createdAt = moment().toISOString();
+    postObj.score = 0;
+
+    db.query('insert into posts set ?', postObj, function(err){
         if(err) return reject(err);
-        db.get('select * from posts order by createdAt desc limit 1', function(err, post){
+        db.query('select * from posts order by createdAt desc limit 1', function(err, post){
           if(err) return reject(err);
           resolve(post);
         });
@@ -45,7 +44,7 @@ exports.create = postObj => {
 exports.delete = post =>{
   console.log("idd: ",post.id);
   return new Promise((resolve, reject)=>{
-    db.run(`delete from posts where id = "${post.id}"`,function(err,post){
+    db.query(`delete from posts where id = "${post.id}"`,function(err,post){
       if(err) return console.log("err: ",err);
     });
   })
@@ -54,7 +53,7 @@ exports.delete = post =>{
 exports.upVote = post =>{
   console.log("idd: ",post.id);
   return new Promise((resolve, reject)=>{
-    db.run(`update posts set score = "${parseInt(post.score)+1}" where id = "${post.id}"`,function(err,post){
+    db.query(`update posts set score = "${parseInt(post.score)+1}" where id = "${post.id}"`,function(err,post){
       if(err) return console.log("err: ",err);
     });
   })
@@ -63,7 +62,7 @@ exports.upVote = post =>{
 exports.downVote = post =>{
   console.log("idd: ",post.id);
   return new Promise((resolve, reject)=>{
-    db.run(`update posts set score = "${parseInt(post.score)-1}" where id = "${post.id}"`,function(err,post){
+    db.query(`update posts set score = "${parseInt(post.score)-1}" where id = "${post.id}"`,function(err,post){
       if(err) return console.log("err: ",err);
     });
   })
