@@ -6,14 +6,19 @@ function init(){
   getAllPosts();
   $('.newPostForm').submit(createPost);
   $('.postBoxes').on('click','.deleteText', deleteText);
+  $('.postBoxes').on('click','.editText', editText);
   $('.postBoxes').on('click','.upVote', upVote);
   $('.postBoxes').on('click','.downVote', downVote);
 }
 
+function editText(){
+
+}
+
 function downVote(){
   let idd = $(this).parent().parent().parent().parent().parent().parent().data('id');
-  console.log("idd: ",idd);
   let sscore = $(this).parent().parent().parent().parent().parent().parent().data('score');
+  console.log("idd: ",idd);
   console.log("sscore: ",sscore);
   $.ajax({
     method:'PUT',
