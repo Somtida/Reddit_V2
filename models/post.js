@@ -26,7 +26,7 @@ exports.getAll = () => {
 exports.create = postObj => {
   return new Promise((resolve, reject)=>{
     postObj.id = uuid();
-    postObj,createdAt = moment().toISOString();
+    postObj.createdAt = moment().toISOString();
     postObj.score = 0;
 
     db.query('insert into posts set ?', postObj, function(err){
@@ -50,20 +50,22 @@ exports.delete = post =>{
   })
 }
 
-exports.upVote = post =>{
-  console.log("idd: ",post.id);
+exports.upVote = id =>{
+  console.log("idd: ", id);
   return new Promise((resolve, reject)=>{
-    db.query(`update posts set score = "${parseInt(post.score)+1}" where id = "${post.id}"`,function(err,post){
-      if(err) return console.log("err: ",err);
+    db.query(`update posts set score = score + 1 where id = "${id}"`, function(err, result){
+      if(err) return reject(err);
+      resolve();
     });
   })
 }
 
-exports.downVote = post =>{
-  console.log("idd: ",post.id);
+exports.downVote = id =>{
+  console.log("idd: ", id);
   return new Promise((resolve, reject)=>{
-    db.query(`update posts set score = "${parseInt(post.score)-1}" where id = "${post.id}"`,function(err,post){
-      if(err) return console.log("err: ",err);
+    db.query(`update posts set score = score - 1 where id = "${id}"`, function(err, result){
+      if(err) return reject(err);
+      resolve();
     });
   })
 }

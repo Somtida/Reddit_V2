@@ -16,7 +16,7 @@ router.get('/',(req, res)=>{
     })
 });
 
-router.post('/',(req, res)=>{
+router.post('/', (req, res)=>{
   Post.create(req.body)
     .then(posts=>{
       res.send(posts);
@@ -26,22 +26,22 @@ router.post('/',(req, res)=>{
     })
 })
 
-router.put('/',(req, res)=>{
-  Post.upVote(req.body)
-    .then(posts=>{
-      res.send(posts)
+router.put('/:id/upvote',(req, res)=>{
+  Post.upVote(req.params.id)
+    .then(() => {
+      res.send();
     })
-    .catch(err=>{
+    .catch(err => {
       res.status(400).send(err);
     })
 })
 
-router.put('/',(req, res)=>{
-  Post.downVote(req.body)
-    .then(posts=>{
-      res.send(posts)
+router.put('/:id/downvote',(req, res)=>{
+  Post.downVote(req.params.id)
+    .then(() => {
+      res.send();
     })
-    .catch(err=>{
+    .catch(err => {
       res.status(400).send(err);
     })
 })

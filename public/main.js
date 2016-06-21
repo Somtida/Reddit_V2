@@ -6,56 +6,64 @@ function init(){
   getAllPosts();
   $('.newPostForm').submit(createPost);
   $('.postBoxes').on('click','.deleteText', deleteText);
-  $('.postBoxes').on('click','.editText', editText);
   $('.postBoxes').on('click','.upVote', upVote);
   $('.postBoxes').on('click','.downVote', downVote);
 }
 
-function editText(){
 
-}
 
 function downVote(){
-  let idd = $(this).parent().parent().parent().parent().parent().parent().data('id');
-  let sscore = $(this).parent().parent().parent().parent().parent().parent().data('score');
+  let data = $(this).closest('.postInfo').data();
+
+  let idd = data.id;
+  let sscore = data.score;
+
+  // let sscore = $(this).parent().parent().parent().parent().parent().parent().data('score');
   console.log("idd: ",idd);
   console.log("sscore: ",sscore);
   $.ajax({
     method:'PUT',
-    url: '/posts',
-    data: {
-      id: idd,
-      score: sscore
-    },
-    success: function(post){
+    url: `/posts/${idd}/downvote`,
+    success: post => {
       console.log("downVote");
-      getAllPosts();
+      // getAllPosts();
+      $(this).closest('.postInfo').data('score',parseInt(sscore)-1);
+      $(this).closest('.postInfo').find('.voteScore').text(parseInt(sscore)-1);
+    },
+    error: function(err) {
+      console.log('err!', err);
     }
 
   })
-  $(this).parent().parent().parent().parent().parent().parent().data('score',parseInt(sscore)-1);
-  $(this).parent().parent().parent().parent().parent().parent().find('.voteScore').text(parseInt(sscore)-1);
+  //
+  // function(post) {
+  //   <-----
+  //   this
+  // }
+  //
+  // <-----
+  //
+  // post => {
+  //   this
+  // }
+
+
 }
 
 function upVote(){
-  let idd = $(this).parent().parent().parent().parent().parent().parent().data('id');
-  console.log("idd: ",idd);
-  let sscore = $(this).parent().parent().parent().parent().parent().parent().data('score');
-  console.log("sscore: ",sscore);
+  let data = $(this).closest('.postInfo').data();
+  let idd = data.id;
+  let sscore = data.score;
   $.ajax({
     method:'PUT',
-    url: '/posts',
-    data: {
-      id: idd,
-      score: sscore
-    },
-    success: function(post){
+    url: `/posts/{$idd}/upVote`,
+    success: post => {
       console.log("upVoted");
-      getAllPosts();
+      // getAllPosts();
+      $(this).closest('.postInfo').data('score',parseInt(sscore)+1);
+      $(this).closest('.postInfo').find('.voteScore').text(parseInt(sscore)+1);
     }
   })
-  $(this).parent().parent().parent().parent().parent().parent().data('score',parseInt(sscore)+1);
-  $(this).parent().parent().parent().parent().parent().parent().find('.voteScore').text(parseInt(sscore)+1);
 }
 
 function deleteText(){
@@ -94,7 +102,7 @@ function buildAllPosts(posts){
   let $divs = posts.map(post=>{
     let $div = $('.postTamplate').clone();
     $div.removeClass('postTamplate');
-    $div.addClass('postInfo').addClass('panel').addClass('panel-primary');
+    $div.addClass('postInfo').addClass('panel').addClass('panel-info');
     $div.data('id',post.id);
     $div.find('.postId').text(post.id);
     let calendar = moment(post.createdAt).calendar();
@@ -127,7 +135,7 @@ function postElement(post){
   console.log("post: ",post);
   let $div = $('.postTamplate').clone();
   $div.removeClass('postTamplate');
-  $div.addClass('postInfo').addClass('panel').addClass('panel-primary');
+  $div.addClass('postInfo').addClass('panel').addClass('panel-info');
   $div.data('id',post.id);
   $div.find('.postId').text(post.id);
   $div.find('.postAt').text(post.createdAt);
