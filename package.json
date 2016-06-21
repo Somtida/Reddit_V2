@@ -1,0 +1,21 @@
+{
+  "name": "w3d1_reddit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "moment": "^2.13.0",
+    "morgan": "^1.7.0",
+    "pug": "^2.0.0-beta3",
+    "sqlite3": "^3.1.4",
+    "uuid": "^2.0.2"
+  }
+}

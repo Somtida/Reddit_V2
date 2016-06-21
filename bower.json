@@ -1,0 +1,27 @@
+{
+  "name": "w3d1_reddit",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "S.SKNS <somtida.th@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "jquery": "^3.0.0"
+  },
+  "dependencies": {
+    "jquery": "^3.0.0",
+    "bootstrap": "^3.3.6",
+    "moment": "^2.13.0",
+    "font-awesome": "fontawesome#^4.6.3"
+  }
+}

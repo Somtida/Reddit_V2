@@ -1,0 +1,38 @@
+body{
+  background-image: url(https://s-media-cache-ak0.pinimg.com/736x/ab/d5/49/abd549c82c5598d8d6222e5aa2df4a28.jpg);
+}
+.container-fluid{
+  margin: 0 auto;
+  width: 75%;
+}
+.textContent{
+  font-size: 1.4em;
+}
+.option{
+  text-align: right;
+}
+.voteScore{
+  font-size: 3em;
+  color: purple;
+}
+.voteNumber{
+  padding-bottom: 5px;
+}
+.jumbotron{
+  text-align: center;
+  background-color: yellow;
+}
+.text{
+  width: 100%;
+  color: #000;
+}
+.addPost{
+  margin-top: 70px;
+  height: 70px;
+}
+.postAt{
+  text-align: right;
+}
+.postTamplate{
+  display: none;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  title Reddit v.SS
+  
+  link(rel="stylesheet",href="style.css")
+  link(rel="stylesheet",href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
+  link(rel="stylesheet",href="/bootswatch.min.css")
+  link(rel="stylesheet",href="/bower_components/font-awesome/css/font-awesome.min.css")
+  script(src="/bower_components/jquery/dist/jquery.min.js")
+  script(src="/bower_components/moment/moment.js")
+  script(src="main.js")
+body
+    
+  .container-fluid
+  
+    .postTamplate
+      .panel-heading
+        .row
+          .col-xs-6
+            .postArea posted by
+            .postId 
+          .col-xs-6
+            .postAt
+      .panel-body
+        .row
+          .col-xs-2
+            .row
+              .col-xs-4
+                button.btn.btn-success.upVote
+                  span
+                    i.fa.fa-caret-square-o-up
+              .col-xs-4.voteNumber
+                .voteScore
+              .col-xs-4
+                button.btn.btn-success.downVote
+                  span
+                    i.fa.fa-caret-square-o-down
+          .col-xs-10.optionArea
+            .row
+              .col-xs-6
+                .textContent
+              .col-xs-6.option
+                button.editText.btn.btn-warning EDIT
+                button.deleteText.btn.btn-danger DELETE
+                
+                
+    
+    .jumbotron
+      h1 Reddit version SS
+      
+    .alert.alert-dismissible.alert-success
+      form.newPostForm
+        .row
+          .col-xs-10
+            h2 New Post
+            textarea.text(rows=3,placeholder="Post Text", required)
+          .col-xs-2
+            button.btn.btn-warning.addPost Add Post
+    
+    .postBoxes
+  
+  
