@@ -31,9 +31,9 @@ exports.create = postObj => {
 
     db.query('insert into posts set ?', postObj, function(err){
         if(err) return reject(err);
-        db.query('select * from posts order by createdAt desc limit 1', function(err, post){
+        db.query('select * from posts order by createdAt desc limit 1', function(err, posts){
           if(err) return reject(err);
-          resolve(post);
+          resolve(posts[0]);
         });
 
       }
