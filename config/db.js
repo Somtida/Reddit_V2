@@ -6,9 +6,11 @@
 //
 // const db = new sqlite3.Database(dataPath);
 //
-// const mysql = require('mysql');
 
-let db = mysql.createConnection({
+
+ const mysql = require('mysql');
+
+let db = mysql.createConnection(process.env.JAWSDB_URL || {
   host: 'localhost',
   user: 'root',
   password: process.env.MYSQL_PASSWORD,
