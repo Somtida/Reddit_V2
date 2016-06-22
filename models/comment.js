@@ -6,9 +6,9 @@ const uuid = require('uuid');
 
 db.query(`create table if not exists comments(
   id INT auto_increment,
-  commentedAt TEXT,
-  text TEXT,
-  postId INT,
+  commentedAt VARCHAR(100),
+  text VARCHAR(100),
+  postId VARCHAR(100),
   primary key(id)
 )`);
 

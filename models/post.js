@@ -5,11 +5,10 @@ const moment = require('moment');
 const uuid = require('uuid');
 
 db.query(`create table if not exists posts(
-  id INT auto_increment,
-  createdAt TEXT,
-  text TEXT,
-  score INT,
-  primary key(id)
+  id VARCHAR(100),
+  createdAt VARCHAR(100),
+  text VARCHAR(100),
+  score INT
 )`);
 
 
@@ -35,7 +34,7 @@ exports.create = postObj => {
     postObj.id = uuid();
     postObj.createdAt = moment().toISOString();
     postObj.score = 0;
-
+    console.log("postObj: ",postObj);
     db.query('insert into posts set ?', postObj, function(err){
         if(err) return reject(err);
         db.query('select * from posts order by createdAt desc limit 1', function(err, posts){
