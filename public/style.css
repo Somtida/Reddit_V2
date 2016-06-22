@@ -36,3 +36,14 @@ body{
 .postTamplate{
   display: none;
 }
+.deleteText{
+  margin-right: 10px;
+}
+.newCommentBox, .commentArea{
+  display: none;
+}
+.info{
+  text-align: center;
+  padding: 30px;
+  font-size: 1.3em;
+}

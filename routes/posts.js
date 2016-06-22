@@ -7,6 +7,7 @@ let router = express.Router();
 let Post = require('../models/post');
 
 router.get('/',(req, res)=>{
+
   Post.getAll()
     .then(posts=>{
       res.send(posts);
@@ -16,7 +17,9 @@ router.get('/',(req, res)=>{
     })
 });
 
+
 router.post('/', (req, res)=>{
+  console.log("req.body: ", req.body);
   Post.create(req.body)
     .then(posts=>{
       res.send(posts);
@@ -25,6 +28,7 @@ router.post('/', (req, res)=>{
       res.status(400).send(err);
     })
 })
+
 
 router.put('/:id/upvote',(req, res)=>{
   Post.upVote(req.params.id)
@@ -45,6 +49,7 @@ router.put('/:id/downvote',(req, res)=>{
       res.status(400).send(err);
     })
 })
+
 
 router.delete('/',(req, res)=>{
   Post.delete(req.body, err=>{

@@ -5,16 +5,35 @@ head
   title Reddit v.SS
   
   link(rel="stylesheet",href="style.css")
-  link(rel="stylesheet",href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
+  //- link(rel="stylesheet",href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
   link(rel="stylesheet",href="/bootswatch.min.css")
+  link(rel="stylesheet", href="/bower_components/bootstrap/dist/css/bootstrap.css")
   link(rel="stylesheet",href="/bower_components/font-awesome/css/font-awesome.min.css")
   script(src="/bower_components/jquery/dist/jquery.min.js")
+  script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
   script(src="/bower_components/moment/moment.js")
   script(src="main.js")
 body
-    
+  //- start modal
+  .modal.fade.commentArea#myModal(tabindex='-1', role='dialog', aria-labelledby='myLargeModalLabel', aria-hidden='true')
+    .modal-dialog.modal-lg
+      .modal-content
+        .info showing
+
+  //- end modal
+  //- template in modal
+  .newCommentBox
+    br
+    br
+    label My Comment: 
+    textarea.commentText(rows=4,cols=70,placeholder="Comment Text")
+    br
+    button.btn.btn-success.createComment COMMENT  
+    button.btn.btn-info.cancel CANCEL
+  //- end template in modal            
+          
   .container-fluid
-  
+  //post tamplate
     .postTamplate
       .panel-heading
         .row
@@ -42,9 +61,17 @@ body
               .col-xs-6
                 .textContent
               .col-xs-6.option
-                button.deleteText.btn.btn-danger DELETE
-                
-                
+                button.deleteText.btn.btn-danger 
+                  span
+                    i.fa.fa-trash
+                button.viewComments.btn.btn-warning VIEW COMMENT
+                button.makeComment.btn.btn-primary(data-toggle='modal', data-target='#myModal')  MAKE COMMENT
+                  
+
+    //comment tamplate
+    .commentTemplate
+      .commentText
+      .commentedAt              
                 
     
     .jumbotron

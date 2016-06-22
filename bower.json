@@ -16,7 +16,7 @@
     "tests"
   ],
   "resolutions": {
-    "jquery": "^3.0.0"
+    "jquery": "1.9.1 - 2"
   },
   "dependencies": {
     "jquery": "^3.0.0",

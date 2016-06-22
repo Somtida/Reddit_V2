@@ -5,11 +5,18 @@ const moment = require('moment');
 const uuid = require('uuid');
 
 db.query(`create table if not exists posts(
-  id TEXT,
+  id INT auto_increment,
   createdAt TEXT,
   text TEXT,
-  score INT
+  score INT,
+  primary key(id)
 )`);
+
+
+
+//select * from comments join posts on comments.postId = posts.id;
+//select comments.id, comments.text, posts.text, posts.score from comments join posts on comments.postId = posts.id;
+
 
 exports.getAll = () => {
   return new Promise((resolve, reject)=>{
@@ -40,6 +47,7 @@ exports.create = postObj => {
     );
   });
 }
+
 
 exports.delete = post =>{
   console.log("idd: ",post.id);

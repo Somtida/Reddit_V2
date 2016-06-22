@@ -16,6 +16,7 @@ app.use(express.static('public'));
 
 app.set('view engine','pug');
 app.use('/posts', require('./routes/posts'));
+app.use('/comments', require('./routes/comments'));
 
 app.get('/',(req, res)=>{
   Post.getAll()
