@@ -26,10 +26,12 @@ exports.getAllComments = () => {
 
 exports.viewComments = id => {
   return new Promise((resolve, reject)=>{
-    db.query(`select comments.id, comments.text, posts.text, posts.score from comments join posts on comments.postId = "${id}"`, function(err, comments){
+    //db.query(`select comments.id, comments.text, posts.text, posts.score from comments join posts on comments.postId = "${id}"`, function(err, comments){
+    db.query(`select * from comments where comments.postId = "${id}"`, function(err, comments){
       if(err){
         reject(err);
       }else{
+        console.log("exports comments: ", comments);
         resolve(comments);
       }
     });

@@ -4,11 +4,10 @@ head
   meta(charset="UTF-8")
   title Reddit v.SS
   
-  link(rel="stylesheet",href="style.css")
-  //- link(rel="stylesheet",href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
-  link(rel="stylesheet",href="/bootswatch.min.css")
   link(rel="stylesheet", href="/bower_components/bootstrap/dist/css/bootstrap.css")
+  link(rel="stylesheet",href="/bootswatch.min.css")
   link(rel="stylesheet",href="/bower_components/font-awesome/css/font-awesome.min.css")
+  link(rel="stylesheet",href="style.css")
   script(src="/bower_components/jquery/dist/jquery.min.js")
   script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
   script(src="/bower_components/moment/moment.js")
@@ -33,7 +32,7 @@ body
   //- end template in modal            
           
   .container-fluid
-  //post tamplate
+  
     .postTamplate
       .panel-heading
         .row
@@ -66,7 +65,8 @@ body
                     i.fa.fa-trash
                 button.viewComments.btn.btn-warning VIEW COMMENT
                 button.makeComment.btn.btn-primary(data-toggle='modal', data-target='#myModal')  MAKE COMMENT
-                  
+      .panel-footer COMMENT
+        .footer          
 
     //comment tamplate
     .commentTemplate

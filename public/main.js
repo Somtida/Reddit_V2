@@ -56,13 +56,16 @@ function viewComments(){
   console.log("index: ",index);
   console.log("data: ",$(this).closest('.postInfo').data());
   let id = data.id;
-
+  //debugger;
   $.get(`/comments/${id}`)
   .done(comments => {
     console.log("comments: ",comments);
 
     let $divs = buildAllComments(comments);
-    $('.postInfo')[index].empty().append($divs);
+    console.log("[index]: ",index);
+    $($('.postInfo')[index]).find('.panel-footer').show();
+    $($('.postInfo')[index]).find('.footer').empty().append($divs);
+    // $($('.postInfo')[index]).empty().append($divs);
   })
   .fail(err=>{
     console.log('err')

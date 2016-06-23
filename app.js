@@ -23,10 +23,12 @@ app.get('/',(req, res)=>{
     .then(posts=>{
       // console.log("posts: ",posts);
       // res.send(posts);
+
       let formattedPosts = posts.map(post=>{
         post.createdAt = moment(post.createdAt).format('LLL');
         return post;
       })
+    
       res.render('index', {posts : formattedPosts});
     })
     .catch(err=>{

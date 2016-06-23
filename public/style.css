@@ -33,8 +33,12 @@ body{
 .postAt{
   text-align: right;
 }
-.postTamplate{
+.panel-footer, .postTamplate{
   display: none;
+}
+.panel-footer .footer{
+  color: blue;
+
 }
 .deleteText{
   margin-right: 10px;
